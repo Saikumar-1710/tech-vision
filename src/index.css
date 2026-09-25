@@ -1,0 +1,380 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ---------------------------------- */
+/* Theme variables                    */
+/* Light cream is the default (:root).*/
+/* The dark theme overrides them via  */
+/* <html data-theme="dark">.          */
+/* ---------------------------------- */
+:root {
+  color-scheme: light;
+
+  /* Surfaces — 90% light cream with warm light tones */
+  --c-ink-950: 250 247 240; /* #FAF7F0 page cream */
+  --c-ink-900: 244 240 229; /* #F4F0E5 section tint */
+  --c-ink-850: 241 236 223; /* #F1ECDF */
+  --c-ink-800: 255 253 248; /* #FFFDF8 card */
+  --c-ink-700: 247 243 234; /* #F7F3EA hover surface */
+  --c-ink-600: 228 220 204; /* #E4DCCB borders / scrollbar */
+
+  /* Text neutrals — warm espresso */
+  --c-white: 36 29 20; /* #241D14 headings */
+  --c-slate-200: 63 56 46; /* #3F382E */
+  --c-slate-300: 90 79 65; /* #5A4F41 body */
+  --c-slate-400: 138 125 108; /* #8A7D6C muted */
+  --c-slate-500: 167 154 136; /* #A79A88 faint */
+  --c-slate-600: 191 179 161; /* #BFB3A1 */
+
+  /* Brand — deepened for contrast on cream */
+  --c-brand-200: 67 56 202; /* indigo-700 */
+  --c-brand-300: 79 70 229; /* indigo-600 */
+  --c-brand-400: 99 102 241; /* indigo-500 */
+  --c-brand-500: 99 102 241; /* indigo-500 */
+  --c-indigo-300: 79 70 229; /* indigo-600 */
+
+  /* Accents — deepened */
+  --c-accent-300: 15 118 110; /* teal-700 */
+  --c-accent-400: 13 148 136; /* teal-600 */
+  --c-accent-500: 8 145 178; /* cyan-600 */
+  --c-violet-300: 109 40 217; /* violet-700 */
+  --c-violet-400: 124 58 237; /* violet-600 */
+  --c-cyan-300: 14 116 144; /* cyan-700 */
+  --c-emerald-300: 4 120 87; /* emerald-700 */
+  --c-amber-300: 180 83 9; /* amber-700 */
+  --c-rose-300: 190 18 60; /* rose-700 */
+
+  /* Text on accent gradients / colored buttons (stays white) */
+  --c-on-accent: 255 255 255;
+  --c-selection-text: 36 29 20;
+
+  /* Decorative gradients — soft pastel on cream */
+  --bg-hero-radial:
+    radial-gradient(ellipse 80% 60% at 70% 20%, rgba(99, 102, 241, 0.12), transparent 60%),
+    radial-gradient(ellipse 60% 50% at 20% 80%, rgba(13, 148, 136, 0.1), transparent 60%);
+  --bg-grid-faint:
+    linear-gradient(rgba(36, 29, 20, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(36, 29, 20, 0.05) 1px, transparent 1px);
+  --text-gradient-image: linear-gradient(120deg, #4f46e5 0%, #7c3aed 40%, #0d9488 100%);
+
+  /* Shadows — soft and warm */
+  --shadow-card: 0 1px 0 0 rgba(36, 29, 20, 0.03) inset, 0 20px 40px -24px rgba(80, 62, 35, 0.18);
+  --shadow-card-hover:
+    0 1px 0 0 rgba(36, 29, 20, 0.04) inset, 0 30px 60px -24px rgba(80, 62, 35, 0.25),
+    0 0 0 1px rgba(99, 102, 241, 0.12);
+  --shadow-glow: 0 0 60px -12px rgba(99, 102, 241, 0.35);
+  --shadow-glow-sm: 0 0 30px -8px rgba(99, 102, 241, 0.3);
+
+  /* Scrollbar */
+  --scrollbar-track: #f1ecdf;
+  --scrollbar-thumb: #d8cfbc;
+  --scrollbar-thumb-hover: #c4b8a2;
+
+  /* Glassmorphism — frosted white over cream */
+  --glass-surface: 255 255 255;
+  --glass-surface-alpha: 0.62;
+  --glass-border: 36 29 20;
+  --glass-border-alpha: 0.08;
+  --glass-highlight: 255 255 255;
+  --glass-highlight-alpha: 0.8;
+  --glass-soft-alpha: 0.5;
+  --glass-input-alpha: 0.55;
+}
+
+[data-theme='dark'] {
+  color-scheme: dark;
+
+  /* Surfaces */
+  --c-ink-950: 7 7 11;
+  --c-ink-900: 10 10 18;
+  --c-ink-850: 13 13 23;
+  --c-ink-800: 18 18 29;
+  --c-ink-700: 26 26 40;
+  --c-ink-600: 36 36 54;
+
+  /* Text neutrals */
+  --c-white: 255 255 255;
+  --c-slate-200: 226 232 240;
+  --c-slate-300: 203 213 225;
+  --c-slate-400: 148 163 184;
+  --c-slate-500: 100 116 139;
+  --c-slate-600: 71 85 105;
+
+  /* Brand (indigo) */
+  --c-brand-200: 199 210 254;
+  --c-brand-300: 165 180 252;
+  --c-brand-400: 129 140 248;
+  --c-brand-500: 99 102 241;
+  --c-indigo-300: 165 180 252;
+
+  /* Accents */
+  --c-accent-300: 103 232 249;
+  --c-accent-400: 34 211 238;
+  --c-accent-500: 6 182 212;
+  --c-violet-300: 216 180 254;
+  --c-violet-400: 167 139 250;
+  --c-cyan-300: 103 232 249;
+  --c-emerald-300: 110 231 183;
+  --c-amber-300: 252 211 77;
+  --c-rose-300: 253 164 175;
+
+  /* Text on accent gradients / colored buttons (stays white) */
+  --c-on-accent: 255 255 255;
+  --c-selection-text: 255 255 255;
+
+  /* Decorative gradients */
+  --bg-hero-radial:
+    radial-gradient(ellipse 80% 60% at 70% 20%, rgba(99, 102, 241, 0.18), transparent 60%),
+    radial-gradient(ellipse 60% 50% at 20% 80%, rgba(34, 211, 238, 0.1), transparent 60%);
+  --bg-grid-faint:
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  --text-gradient-image: linear-gradient(120deg, #a5b4fc 0%, #c4b5fd 40%, #67e8f9 100%);
+
+  /* Shadows */
+  --shadow-card: 0 1px 0 0 rgba(255, 255, 255, 0.04) inset, 0 20px 40px -20px rgba(0, 0, 0, 0.6);
+  --shadow-card-hover:
+    0 1px 0 0 rgba(255, 255, 255, 0.06) inset, 0 30px 60px -20px rgba(0, 0, 0, 0.7),
+    0 0 0 1px rgba(129, 140, 248, 0.15);
+  --shadow-glow: 0 0 60px -12px rgba(99, 102, 241, 0.45);
+  --shadow-glow-sm: 0 0 30px -8px rgba(99, 102, 241, 0.4);
+
+  /* Scrollbar */
+  --scrollbar-track: #0a0a12;
+  --scrollbar-thumb: #242436;
+  --scrollbar-thumb-hover: #3b3b52;
+
+  /* Glassmorphism — subtle white glass on ink */
+  --glass-surface: 255 255 255;
+  --glass-surface-alpha: 0.04;
+  --glass-border: 255 255 255;
+  --glass-border-alpha: 0.07;
+  --glass-highlight: 255 255 255;
+  --glass-highlight-alpha: 0.07;
+  --glass-soft-alpha: 0.05;
+  --glass-input-alpha: 0.04;
+}
+
+/* ---------------------------------- */
+/* Base                               */
+/* ---------------------------------- */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-ink-950 text-slate-300 font-sans antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Anchor offset so sticky navbar never covers section headings */
+  section[id] {
+    scroll-margin-top: 88px;
+  }
+
+  ::selection {
+    background-color: rgb(var(--c-brand-500) / 0.4);
+    color: rgb(var(--c-selection-text));
+  }
+
+  /* Subtle custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--scrollbar-track);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb);
+    border-radius: 8px;
+    border: 2px solid var(--scrollbar-track);
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--scrollbar-thumb-hover);
+  }
+}
+
+/* ---------------------------------- */
+/* Reusable component classes         */
+/* ---------------------------------- */
+@layer components {
+  .container-site {
+    @apply mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-10;
+  }
+
+  .glass {
+    background: rgb(var(--glass-surface) / var(--glass-surface-alpha));
+    border: 1px solid rgb(var(--glass-border) / var(--glass-border-alpha));
+    backdrop-filter: blur(16px) saturate(160%);
+    -webkit-backdrop-filter: blur(16px) saturate(160%);
+    box-shadow: var(--shadow-card), inset 0 1px 0 0 rgb(var(--glass-highlight) / var(--glass-highlight-alpha));
+  }
+
+  .glass-strong {
+    background: rgb(var(--c-ink-800) / 0.7);
+    border: 1px solid rgb(var(--glass-border) / var(--glass-border-alpha));
+    backdrop-filter: blur(24px) saturate(160%);
+    -webkit-backdrop-filter: blur(24px) saturate(160%);
+    box-shadow: var(--shadow-card), inset 0 1px 0 0 rgb(var(--glass-highlight) / var(--glass-highlight-alpha));
+  }
+
+  .input-glass {
+    background: rgb(var(--glass-surface) / var(--glass-input-alpha));
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: inset 0 1px 0 0 rgb(var(--glass-highlight) / var(--glass-highlight-alpha));
+  }
+
+  .text-gradient {
+    @apply bg-clip-text text-transparent;
+    background-image: var(--text-gradient-image);
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl bg-brand-gradient px-6 py-3 text-sm font-semibold text-on-accent shadow-glow-sm transition-all duration-300 ease-out-expo hover:shadow-glow hover:brightness-110 hover:-translate-y-0.5 active:translate-y-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-400/70 focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-6 py-3 text-sm font-semibold text-slate-200 backdrop-blur transition-all duration-300 ease-out-expo hover:border-brand-400/40 hover:bg-white/[0.08] hover:text-white hover:-translate-y-0.5 active:translate-y-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-400/70 focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950;
+    background: rgb(var(--glass-surface) / var(--glass-soft-alpha));
+    border: 1px solid rgb(var(--glass-border) / var(--glass-border-alpha));
+    box-shadow: inset 0 1px 0 0 rgb(var(--glass-highlight) / var(--glass-highlight-alpha));
+  }
+
+  .chip {
+    @apply inline-flex items-center rounded-full border px-2.5 py-1 text-[11px] font-medium text-slate-300 backdrop-blur-sm transition-colors duration-200;
+    background: rgb(var(--glass-surface) / var(--glass-soft-alpha));
+    border-color: rgb(var(--glass-border) / var(--glass-border-alpha));
+  }
+
+  .chip-hover {
+    @apply hover:border-brand-400/40 hover:bg-brand-500/10 hover:text-brand-200;
+  }
+
+  .card {
+    @apply rounded-2xl transition-all duration-300 ease-out-expo;
+    background: rgb(var(--glass-surface) / var(--glass-surface-alpha));
+    border: 1px solid rgb(var(--glass-border) / var(--glass-border-alpha));
+    backdrop-filter: blur(14px) saturate(150%);
+    -webkit-backdrop-filter: blur(14px) saturate(150%);
+    box-shadow: var(--shadow-card), inset 0 1px 0 0 rgb(var(--glass-highlight) / var(--glass-highlight-alpha));
+  }
+
+  .card-hover {
+    @apply hover:-translate-y-1.5 hover:border-brand-400/25 hover:bg-white/[0.05] hover:shadow-card-hover;
+  }
+
+  .section-label {
+    @apply inline-flex items-center gap-2 rounded-full border border-brand-400/20 bg-brand-500/[0.08] px-3.5 py-1.5 text-xs font-semibold uppercase tracking-[0.14em] text-brand-300;
+  }
+}
+
+/* ---------------------------------- */
+/* Utilities                          */
+/* ---------------------------------- */
+@layer utilities {
+  /* Scroll reveal — elements start hidden, .is-visible animates them in */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition:
+      opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: opacity, transform;
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .mask-fade-x {
+    -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+  }
+
+  /* Hide scrollbars while keeping elements scrollable (carousels) */
+  .scrollbar-none {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Staggered reveal group — children animate in sequence when the
+     observed wrapper gains .is-visible (used by the footer). */
+  .reveal-item {
+    opacity: 0;
+    transform: translateY(20px);
+    transition:
+      opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: opacity, transform;
+  }
+  .reveal-group.is-visible .reveal-item {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Animated shimmer hairline (footer top border) */
+  .footer-shimmer-line {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgb(var(--c-brand-400) / 0.7) 25%,
+      rgb(var(--c-violet-400) / 0.7) 50%,
+      rgb(var(--c-accent-400) / 0.7) 75%,
+      transparent 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 8s linear infinite;
+  }
+}
+
+@keyframes shimmer {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}
+
+/* ---------------------------------- */
+/* Reduced motion                     */
+/* ---------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .reveal-item {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .footer-shimmer-line {
+    animation: none;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
